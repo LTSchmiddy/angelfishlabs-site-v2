@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "baseUrl": "./react_src/",
+    "paths": {
+      "rsrc": ["./"] // This mapping is relative to "baseUrl"
+      // "plugins": ["./plugins"] // This mapping is relative to "baseUrl"
+    }
+  },
+  "exclude": [
+    "./node_modules",
+    "./dist",
+    "./build"
+  ]
+}
