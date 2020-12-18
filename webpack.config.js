@@ -20,7 +20,7 @@ if (process.env.hasOwnProperty("WP_MODE")) {
 // Define Webpack Config:
 module.exports = {
     mode: wpMode,
-    entry: path.resolve(__dirname, 'react_src/index.tsx'),
+    entry: path.resolve(__dirname, 'react_src/app.tsx'),
     output: {
         publicPath: "/react/",
         path: path.resolve(__dirname, wpDest + 'react/'),

@@ -7,9 +7,9 @@
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "baseUrl": "./react_src/",
+    "baseUrl": "./",
     "paths": {
-      "rsrc": ["./"] // This mapping is relative to "baseUrl"
+      "react_src": ["./react_src"] // This mapping is relative to "baseUrl"
       // "plugins": ["./plugins"] // This mapping is relative to "baseUrl"
     }
   },

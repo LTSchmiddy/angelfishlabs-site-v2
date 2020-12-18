@@ -7,6 +7,7 @@ import flask_interface
 
 app = flask_interface.app
 
+# This function is main
 def start(*args, **kwargs):
     def _start_app(*_args, **_kwargs):
         app.run(*_args, **_kwargs)

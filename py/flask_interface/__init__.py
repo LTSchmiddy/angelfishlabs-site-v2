@@ -31,6 +31,8 @@ app.config.update(settings.current["flask"]["config"])
 
 from .root import root
 from .react_site import react_site
+from .md_docs import md_docs
 
 app.register_blueprint(root, url_prefix='/')
 app.register_blueprint(react_site, url_prefix='/react/')
+app.register_blueprint(md_docs, url_prefix='/md/')
