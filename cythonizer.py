@@ -16,6 +16,7 @@ python_suffix = ".py"
 cython_suffix = ".pyx"
 source_dir = "./py"
 templates_dir = "./templates"
+docs_dir = "./docs"
 static_dir = "./static"
 out_dir = "./dist"
 
@@ -108,6 +109,7 @@ def run(source_mode = False):
     shutil.copytree(source_dir, out_dir)
     shutil.copytree(templates_dir, out_dir + "/templates")
     shutil.copytree(static_dir, out_dir + "/static")
+    shutil.copytree(docs_dir, out_dir + "/docs")
 
     if 'source_mode' in sys.argv or source_mode:
         print("Using uncompiled .py sources")
