@@ -1,3 +1,5 @@
+# from __future__ import annotations
+
 import os
 import sys
 
@@ -18,11 +20,11 @@ md_docs = Blueprint(
 
 
 @md_docs.route("/docs/<path:md_path>", methods=['POST', 'GET'])
-def get_markdown_doc(md_path: str):
+def get_markdown_doc(md_path: str, **kwargs):
     return render_template(md_path)
 
 @md_docs.route("/list/<path:md_path>", methods=['POST', 'GET'])
-def get_markdown_doc_list(md_path: str):
+def get_markdown_doc_list(md_path: str, **kwargs):
 
     # tree = get_dir_tree(
     #     os.path.join(current['flask']['blueprints']['markdown']['template-dir'], md_path).replace("\\", "/"),
