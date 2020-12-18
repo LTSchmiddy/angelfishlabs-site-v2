@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "run": "flask",
-        "build": "npx webpack --config=webpack.config.js"
+        "build": "python build.py"
     },
     "author": "LT_Schmiddy (Alex Schmid)",
     "license": "ISC",
