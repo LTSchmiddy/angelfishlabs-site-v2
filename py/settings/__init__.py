@@ -19,7 +19,8 @@ default_settings = {
         },
         "blueprints": {
             "root": {"template-dir": "templates", "static-dir": "static"},
-            "react": {"template-dir": "templates", "static-dir": "react"},
+            "react": {"template-dir": "react", "static-dir": "react"},
+            "markdown": {"template-dir": "docs", "static-dir": "docs"},
         }
     },
     "database": {

@@ -1,0 +1,22 @@
+@import "react_src/style/common.scss";
+
+header {
+    color: $trim-font-color;
+    background-color: $trim-bg-color;
+    height: $navbar-height;
+
+    width: 100%;
+    padding: 5px 15px;
+    //align-content: center;
+    //text-align: center;
+
+    nav {
+        // Debug Color:
+        //background-color: darkgreen;
+
+        display: inline-block;
+        min-width: 300px;
+        text-align: left;
+    }
+}
+

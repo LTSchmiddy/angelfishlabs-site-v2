@@ -71,6 +71,7 @@ def get_parser() -> argparse.ArgumentParser:
     )
     webpack_dest_args.add_argument(
         "-r",
+        "-s",
         "--src",
         action='store_const',
         const='./',

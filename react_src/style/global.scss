@@ -1,0 +1,14 @@
+@import "common";
+
+#app-root, #site-root {
+    // Keeps the app filling up the entire page view. Otherwise, page footers might be halfway up the page if there's
+    // not enough content. Cleaner solution than a thousand 'position: absolute' declarations, and then having to play
+    // with all the math and magic numbers that method brings.
+    width: 100vw;
+    height: 100vh;
+
+    .page-view {
+        height: calc(100% - #{$navbar-height} - #{$footer-height})
+
+    }
+}

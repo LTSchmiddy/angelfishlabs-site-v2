@@ -1,0 +1,52 @@
+@import "../../style/common.scss";
+
+.sidebar {
+    //background-color: greenyellow;
+
+    display: inline-block;
+    height: 100%;
+    width: $sidebar-initial-width;
+
+
+    $dragbar-width: 7px;
+    .sidebar-content {
+        display: inline-block;
+        height: 100%;
+        width: calc(100% - #{$dragbar-width});
+    }
+    .sidebar-drag-handle {
+        display: inline-block;
+        background-color: #111111;
+        height: 100%;
+        width: $dragbar-width;
+        cursor: ew-resize;
+    }
+}
+
+.left-sidebar {
+    float: left;
+    .sidebar-content {
+        float: right;
+    }
+    .sidebar-content {
+        float: left;
+    }
+}
+
+.right-sidebar {
+    float: right;
+    .sidebar-content {
+        float: left;
+    }
+    .sidebar-content {
+        float: right;
+    }
+}
+
+.content-field {
+    //background-color: blue;
+
+    width: calc(100% - #{$sidebar-initial-width});
+    display: inline-block;
+    height: 100%;
+}
