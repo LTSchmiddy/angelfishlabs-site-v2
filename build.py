@@ -121,7 +121,7 @@ def build(wp_mode: str, wp_dest: str, cy_action: str):
             'npx',
             'webpack'
         ],
-        shell=True,
+        # shell=True,
         env=wp_env,
     )
 
