@@ -6,6 +6,7 @@ import {Footer} from "./cmpts/footer/main";
 
 import {create_lookup} from "./page_listing";
 
+import {address} from "./logic/url_handler";
 
 interface ISiteRootProps {}
 interface ISiteRootState {
@@ -17,14 +18,16 @@ export class SiteRoot extends React.Component<ISiteRootProps, ISiteRootState> {
         super(props);
 
         this.state = {
-            page_id: "home"
+            page_id: address.pageView
         }
     }
 
     setPage(new_page_id: string) {
         this.setState({
             page_id: new_page_id
-        })
+        }, ()=>{
+            address.pageView = this.state.page_id;
+        });
     }
 
     render() {

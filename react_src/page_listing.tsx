@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {HomePage} from "./pages/home/main";
+import {HomePage} from "./pages/doc_viewer/main";
 import {MyProjectsPage} from "./pages/my_projects/main";
 
 interface ILookupSig {

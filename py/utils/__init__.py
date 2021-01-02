@@ -40,19 +40,24 @@ def get_dir_tree(current_dir, callback: FunctionType=None, to_ignore: Union[tupl
             continue
 
         fullpath = os.path.join(current_dir, i).replace("\\", "/")
-        
+
+        additional_info = {}
         if callback is not None:
-            result = callback(i, fullpath, current_dir)
-            
-            if not (result is None or bool(result) is True):
+            shouldSkip = callback(i, fullpath, current_dir, additional_info)
+
+            # I should probably re-write this line:
+            # if not (shouldSkip is None or bool(shouldSkip) is True):
+            if shouldSkip:
+                print(f"Skipping {fullpath}")
                 continue
 
         if os.path.isfile(fullpath):
-            dir_dict['files'][i] = fullpath
+            additional_info.update({'path:': fullpath})
+            dir_dict['files'][i] = additional_info
 
         elif os.path.isdir(fullpath):
-            dir_dict['dirs'][i] = get_dir_tree(fullpath, callback, to_ignore)
-
+            additional_info.update(get_dir_tree(fullpath, callback, to_ignore))
+            dir_dict['dirs'][i] = additional_info
 
     return dir_dict
 

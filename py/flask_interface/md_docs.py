@@ -8,6 +8,8 @@ from jinja2 import TemplateNotFound
 from utils import *
 import utils.anon_func as af
 
+from doc_loaders import *
+
 from settings import current, exec_dir
 
 md_docs = Blueprint(
@@ -21,7 +23,7 @@ md_docs = Blueprint(
 
 @md_docs.route("/docs/<path:md_path>", methods=['POST', 'GET'])
 def get_markdown_doc(md_path: str, **kwargs):
-    return render_template(md_path)
+    return parseDocument(render_template(md_path))
 
 @md_docs.route("/list/<path:md_path>", methods=['POST', 'GET'])
 def get_markdown_doc_list(md_path: str, **kwargs):

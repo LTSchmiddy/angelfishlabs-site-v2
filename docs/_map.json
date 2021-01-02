@@ -1,0 +1,39 @@
+{
+    "path": "docs",
+    "dirs": {
+        "home": {
+            "path": "docs/home",
+            "dirs": {},
+            "files": {
+                "about-me.md": {
+                    "title": "No Title",
+                    "format": "markdown",
+                    "sort-order": -1,
+                    "og:img": null,
+                    "path:": "docs/home/about-me.md"
+                },
+                "index.md": {
+                    "title": "Home",
+                    "format": "markdown",
+                    "sort-order": -1,
+                    "og:img": null,
+                    "path:": "docs/home/index.md"
+                }
+            }
+        },
+        "my_projects": {
+            "path": "docs/my_projects",
+            "dirs": {},
+            "files": {
+                "super-metroid-pc-edition.md": {
+                    "title": "No Title",
+                    "format": "markdown",
+                    "sort-order": -1,
+                    "og:img": null,
+                    "path:": "docs/my_projects/super-metroid-pc-edition.md"
+                }
+            }
+        }
+    },
+    "files": {}
+}

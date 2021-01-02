@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as Showdown from "showdown";
+
+import {ILoadedDocInfo, ILoadedDoc} from "../../logic/doc_loader";
 
 import {Sidebar, ContentField} from "../../cmpts/sidebar/main";
 import {DocBtnList} from "../../cmpts/doc_viewing/list";
-
-import * as sd from "showdown";
-// import {DocView, IDocViewProps} from "../../cmpts/doc_viewing/view";
-
 import "./style.scss"
-import * as Showdown from "showdown";
+
+import {address} from "../../logic/url_handler";
 
 interface IHomePageProps {
     list_path: string;
@@ -20,31 +20,40 @@ interface IHomePageState {
     loaded: string;
 }
 
-
-let showdown = new Showdown.Converter();
+export let showdown: Showdown.Converter = new Showdown.Converter();
 showdown.setFlavor("github");
 showdown.setOption("headerLevelStart", 2);
 
+
+// let showdown = new Showdown.Converter();
+// showdown.setFlavor("github");
+// showdown.setOption("headerLevelStart", 2);
+
 export class HomePage extends React.Component<IHomePageProps, IHomePageState> {
-
-
+    doc_root: string;
     constructor(props: IHomePageProps | Readonly<IHomePageProps>) {
         super(props);
+        this.doc_root = props.list_path;
+
+        // let doc_path = `/docs/${this.doc_root}/${address.pageParams.join("/")}`;
+        let doc_path = address.pageParams.join("/");
 
         this.state = {
             list_path: props.list_path,
-            displayed_doc: "docs/home/index.md",
+            displayed_doc: doc_path,
             loaded: null
         }
     }
+
 
     setView (doc_path: string) {
         console.log("HOME: "+ doc_path);
         this.setState({
             displayed_doc: doc_path
-        },
-            // ()=>{console.log(this.state)}
-        );
+        }, ()=>{
+            address.pageParams = this.state.displayed_doc.split("/");
+            address.recordPage();
+        });
     }
 
     componentDidMount() {
@@ -57,7 +66,7 @@ export class HomePage extends React.Component<IHomePageProps, IHomePageState> {
 
     componentDidUpdate(prevProps: Readonly<IHomePageProps>, prevState: Readonly<IHomePageState>, snapshot?: any) {
         console.log("UPDATED");
-        console.log(this.props);
+        // console.log(this.props);
         if (this.state.displayed_doc !== prevState.displayed_doc) {
             this.loadDoc();
         }
@@ -70,15 +79,26 @@ export class HomePage extends React.Component<IHomePageProps, IHomePageState> {
 
     loadDoc(){
         console.log("Attempt LOAD");
-        $.post(`/md/${this.state.displayed_doc}`, (data, status)=>{
+        $.post(`/md/${this.state.displayed_doc}`, (doc, status)=>{
             console.log("LOADED");
+
+            this.setupDocInfo(doc);
             this.setState({
-                loaded: data
+                loaded: doc.content
             });
         });
     }
 
+    setupDocInfo(doc: ILoadedDoc) {
+        if (doc.info.format === "markdown") {
+            doc.content = showdown.makeHtml(doc.content);
+        }
+
+        document.title = doc.info.title + " - Angelfish Labs";
+    }
+
     render () {
+        console.log("LIST PATH: " + this.state.list_path);
         return (
             <div className={"page-view"}>
                 <ContentField
@@ -91,7 +111,10 @@ export class HomePage extends React.Component<IHomePageProps, IHomePageState> {
                     sidebar_side={"left"}
                     sidebar_id={"home_bar"}
                 >
-                    <DocBtnList onClickHandler={this.setView.bind(this)} list_path={this.state.list_path} selected_doc={this.state.displayed_doc}/>
+                    <DocBtnList
+                        onClickHandler={this.setView.bind(this)}
+                        list_path={this.state.list_path}
+                        selected_doc={this.state.displayed_doc}/>
                 </Sidebar>
             </div>
         );

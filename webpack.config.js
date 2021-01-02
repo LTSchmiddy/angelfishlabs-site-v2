@@ -29,6 +29,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.json$/,
+                loader: 'json5-loader',
+                type: 'javascript/auto'
+            },
+            {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
@@ -79,7 +84,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            rsrc: path.resolve(__dirname, "src/react_src"),
+            react_src: path.resolve(__dirname, "src/react_src"),
         },
         extensions: [ '.tsx', '.ts', '.jsx', '.js', '.json'],
     },

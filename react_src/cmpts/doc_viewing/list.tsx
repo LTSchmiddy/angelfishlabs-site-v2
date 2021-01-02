@@ -1,6 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import * as doc_map from "../../../docs/_map.json";
+
+import * as my_utils from "../../my_utils";
+my_utils.bindToWindow("doc_map", doc_map);
+
 import {DocBtn, IDocBtnProps} from "./button";
 
 import "./style.scss"

@@ -1,8 +1,32 @@
 import subprocess, sys, argparse, os
 import cythonizer
+import create_docs_map
+
+from py.utils import anon_func as af
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Built tool for AngelfishLabs site.')
+
+    docs_map_args = parser.add_mutually_exclusive_group()
+    docs_map_args.add_argument(
+        "-m"
+        "--create-docs-map",
+        action = 'store_const',
+        const = 'create',
+        default = 'create',
+        dest = 'docs_map',
+        help="[Re]generate _map.json for the docs directory."
+    )
+
+    docs_map_args.add_argument(
+        "-k"
+        "--create-docs-map",
+        action = 'store_const',
+        const = 'skip',
+        dest = 'docs_map',
+        help="Skip [re]generation of _map.json for the docs directory."
+    )
+
 
     cythonizer_args = parser.add_mutually_exclusive_group()
     cythonizer_args.add_argument(
@@ -81,7 +105,15 @@ def get_parser() -> argparse.ArgumentParser:
 
     return parser
 
-def build(wp_mode: str, wp_dest: str, cy_action: str):
+def build(docs_map: str, wp_mode: str, wp_dest: str, cy_action: str):
+    # Generate docs/_map.json
+    if docs_map == 'skip':
+        print("Skipping cythonizer.py... ")
+    elif docs_map == 'create':
+        create_docs_map.run()
+    else:
+        raise ValueError(f"Something has gone horribly wrong: '{docs_map}' is not a valid docs_map.")
+
 
     # Build Server
     if cy_action == 'no_build':
@@ -121,13 +153,13 @@ def build(wp_mode: str, wp_dest: str, cy_action: str):
             'npx',
             'webpack'
         ],
-        # shell=True,
+        shell=af.tget(os.name == 'nt', True, False),
         env=wp_env,
     )
 
 def main():
     args: argparse.Namespace = get_parser().parse_args(sys.argv[1:])
-    build(args.wp_mode, args.wp_dest, args.cy_action)
+    build(args.docs_map, args.wp_mode, args.wp_dest, args.cy_action)
 
 
 

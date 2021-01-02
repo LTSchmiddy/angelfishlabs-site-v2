@@ -25,7 +25,7 @@ compile_cython_only = False
 
 platform_extension = af.tget(os.name == 'nt', ".pyd", ".so")
 
-def dist_cythonize(name: str, fullpath: str, parent_dir: str):
+def dist_cythonize(name: str, fullpath: str, parent_dir: str, info: dict):
     if name.endswith(cython_suffix) or (not compile_cython_only and name.endswith(python_suffix)):
         suffix = ".py"
         if name.endswith(cython_suffix):
@@ -61,7 +61,7 @@ def dist_cythonize(name: str, fullpath: str, parent_dir: str):
                 raise e
 
 
-def src_cythonize(name: str, fullpath: str, parent_dir: str):
+def src_cythonize(name: str, fullpath: str, parent_dir: str, info: dict):
     if name.endswith(cython_suffix):
         filename = classname = name.removesuffix(cython_suffix)
         dst_path = os.path.join(parent_dir, filename)
