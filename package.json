@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "run": "python -m flask",
-        "build": "build build.py -cpi"
+        "build": "python build.py -cpi"
     },
     "author": "LT_Schmiddy (Alex Schmid)",
     "license": "ISC",
