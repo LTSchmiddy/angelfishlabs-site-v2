@@ -91,7 +91,7 @@ export class HomePage extends React.Component<IHomePageProps, IHomePageState> {
 
     setupDocInfo(doc: ILoadedDoc) {
         if (doc.info.format === "markdown") {
-            doc.content = showdown.makeHtml(doc.content);
+            // doc.content = showdown.makeHtml(doc.content);
         }
 
         document.title = doc.info.title + " - Angelfish Labs";

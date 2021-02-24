@@ -1,9 +1,12 @@
 import sys, os
 
-from utils import *
+try:
+    from utils import *
+    import settings
+except:
+    from py.utils import *
+    from py import settings
 from . import *
-
-import settings
 
 def process(name: str, fullpath: str, parent_dir: str, info: dict):
     if name.startswith("_"):

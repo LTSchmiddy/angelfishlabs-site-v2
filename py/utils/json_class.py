@@ -1,10 +1,10 @@
 from __future__ import annotations
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 import json
 
 
-def make_dict(obj, attrs: (List[str], Tuple[str])):
+def make_dict(obj, attrs: Union[List[str], Tuple[str]]):
     retVal = {}
     for i in attrs:
         if hasattr(obj, i):

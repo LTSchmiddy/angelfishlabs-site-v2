@@ -4,8 +4,8 @@
     "description": "Personal Website for Alex Schmid",
     "main": "index.js",
     "scripts": {
-        "run": "flask",
-        "build": "python build.py -cpi"
+        "run": "python -m flask",
+        "build": "build build.py -cpi"
     },
     "author": "LT_Schmiddy (Alex Schmid)",
     "license": "ISC",
