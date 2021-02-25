@@ -26,6 +26,8 @@ interface IDocListResults {
     dirs: IDocBtnProps[];
 }
 
+
+// List view of docs:
 export class DocBtnList extends React.Component<IDocBtnListProps, IDocBtnListState> {
     doc_results: IDocListResults;
     // list_path: string;
@@ -59,6 +61,7 @@ export class DocBtnList extends React.Component<IDocBtnListProps, IDocBtnListSta
             list_loaded: false
         });
 
+        // Queries server for info about the doc map.
         $.post(
             `/md/list/${this.props.list_path}`,
             (data: IDocListResults, status)=>{
@@ -75,6 +78,7 @@ export class DocBtnList extends React.Component<IDocBtnListProps, IDocBtnListSta
         this.onClickHandler(doc_path);
     }
 
+    // Generating list view based on server info:
     render () {
         if (!this.state.list_loaded) {
             return (
@@ -88,8 +92,9 @@ export class DocBtnList extends React.Component<IDocBtnListProps, IDocBtnListSta
             });
 
             let file_btns = this.doc_results.files.map((i, index, array)=>{
+                // console.log(i);
                 return (
-                    <DocBtn key={`file-${index}`} name={i.name} type={i.type} path={i.path} onClickHandler={this.setView.bind(this)}/>
+                    <DocBtn key={`file-${index}`} name={i.title} type={i.type} path={i.path} onClickHandler={this.setView.bind(this)}/>
                 );
             });
             return (

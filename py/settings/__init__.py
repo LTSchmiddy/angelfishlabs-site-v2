@@ -21,7 +21,8 @@ default_settings = {
             "root": {"template-dir": "templates", "static-dir": "static"},
             "react": {"template-dir": "react", "static-dir": "react"},
             "markdown": {"template-dir": "docs", "static-dir": "docs"},
-        }
+        },
+        "doc_map_file_name": "_map.json"
     },
     "database": {
         "echo": False

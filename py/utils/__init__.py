@@ -52,7 +52,7 @@ def get_dir_tree(current_dir, callback: FunctionType=None, to_ignore: Union[tupl
                 continue
 
         if os.path.isfile(fullpath):
-            additional_info.update({'path:': fullpath})
+            additional_info.update({'path': fullpath})
             dir_dict['files'][i] = additional_info
 
         elif os.path.isdir(fullpath):

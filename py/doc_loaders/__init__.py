@@ -8,6 +8,19 @@ def info_defaults() -> dict:
         'og:img': None,
     }
 
+def seek_path(node: dict, path_list: list):
+        next_path = path_list.pop(0)
+        
+        if len(path_list) > 0:
+            return seek_path(node['dirs'][next_path], path_list)
+        
+        if next_path in node['dirs'].keys():
+            return node['dirs'][next_path]
+        
+        if next_path in node['files'].keys():
+            return node['files'][next_path]
+        
+        return None
 
 def parseDocument(loaded_doc: str) -> dict:
     retVal = {
@@ -21,3 +34,11 @@ def parseDocument(loaded_doc: str) -> dict:
         retVal['info'].update(json_info)
 
     return retVal
+
+def parseDocumentFile(doc_path: str) -> dict:
+    
+    loadFile = open(doc_path, "r")
+    fileStr = loadFile.read()
+    loadFile.close()
+
+    return parseDocument(fileStr)

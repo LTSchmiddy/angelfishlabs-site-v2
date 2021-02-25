@@ -2,35 +2,45 @@
     "path": "docs",
     "dirs": {
         "home": {
+            "name": "home",
+            "type": "dir",
             "path": "docs/home",
             "dirs": {},
             "files": {
                 "about-me.md": {
-                    "title": "No Title",
+                    "name": "about-me.md",
+                    "type": "file",
+                    "title": "About Me",
                     "format": "markdown",
                     "sort-order": -1,
                     "og:img": null,
-                    "path:": "docs/home/about-me.md"
+                    "path": "docs/home/about-me.md"
                 },
                 "index.md": {
+                    "name": "index.md",
+                    "type": "file",
                     "title": "Home",
                     "format": "markdown",
                     "sort-order": -1,
                     "og:img": null,
-                    "path:": "docs/home/index.md"
+                    "path": "docs/home/index.md"
                 }
             }
         },
         "my_projects": {
+            "name": "my_projects",
+            "type": "dir",
             "path": "docs/my_projects",
             "dirs": {},
             "files": {
                 "super-metroid-pc-edition.md": {
-                    "title": "No Title",
+                    "name": "super-metroid-pc-edition.md",
+                    "type": "file",
+                    "title": "Super Metroid - PC Edition",
                     "format": "markdown",
                     "sort-order": -1,
                     "og:img": null,
-                    "path:": "docs/my_projects/super-metroid-pc-edition.md"
+                    "path": "docs/my_projects/super-metroid-pc-edition.md"
                 }
             }
         }

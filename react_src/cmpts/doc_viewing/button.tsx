@@ -8,12 +8,14 @@ export interface IDocBtnProps {
     type: string;
     path: string;
     onClickHandler: Function;
+    title?: string;
 }
 
 interface IDocBtnState {
     selected: boolean
 }
 
+// Buttons used for selecting doc to display:
 export class DocBtn extends React.Component<IDocBtnProps, IDocBtnState> {
     constructor(props: IDocBtnProps | Readonly<IDocBtnProps>) {
         super(props);
