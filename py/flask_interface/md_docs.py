@@ -29,8 +29,7 @@ md_docs = Blueprint(
     static_folder=os.path.join(exec_dir, current['flask']['blueprints']['markdown']['static-dir'])
 )
 
-
-    
+ 
 @md_docs.route("/docs/<path:md_path>", methods=['POST', 'GET'])
 def get_markdown_doc(md_path: str, **kwargs):
     return parseDocument(render_template(md_path))
